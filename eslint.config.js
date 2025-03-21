@@ -16,13 +16,6 @@ export default [
         sourceType: "module",
       },
     },
-    extends: [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:react-hooks/recommended",
-      "plugin:react-refresh/jsx-runtime",
-      "prettier",
-    ],
     plugins: {
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
