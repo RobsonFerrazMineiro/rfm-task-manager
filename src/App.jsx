@@ -1,6 +1,6 @@
-import Tasks from "./Tasks";
+import Tasks from "./Tasks"
 
 function App() {
-  return <Tasks />;
+  return <Tasks />
 }
-export default App;
+export default App
