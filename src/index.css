@@ -82,7 +82,7 @@
 
   @font-face {
     font-family: "Poppins";
-    src: url("/src/assets/fonts/Poppins-Medium.ttf") format("truetype");
+    src: url("./src/assets/fonts/Poppins-Medium.ttf") format("truetype");
     font-weight: 500;
     font-style: normal;
   }
@@ -127,5 +127,9 @@
     src: url("/src/assets/fonts/Poppins-ThinItalic.ttf") format("truetype");
     font-weight: 100;
     font-style: italic;
+  }
+
+  body {
+    @apply bg-[#f8f8f8];
   }
 }
