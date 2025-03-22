@@ -1,54 +1,30 @@
-import { useEffect, useState } from "react";
-import Header from "./Header";
+import Button from "./Button"
+import AddIcon from "/src/assets/icons/add.svg?react"
+import TrashIcon from "/src/assets/icons/trash.svg?react"
 
-function Tasks() {
-  const [inputValue, setInputValue] = useState("teste");
-
-  const [messages, setMessage] = useState([
-    "Hello world",
-    "FSC isn the best course in the world",
-    "I love React",
-  ]);
-
-  //componentDidMount
-  useEffect(() => {
-    console.log("Mounting...");
-  }, []);
-
-  function handleButtonClick() {
-    setMessage([...messages, inputValue]);
-  }
-
+const Tasks = () => {
   return (
-    <div>
-      {messages.lenght <= 2 && (
-        <Header>
-          <h1>Add a tasks</h1>
-        </Header>
-      )}
-      <input
-        className="input"
-        type="text"
-        placeholder="Creatr your task"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button className="button" onClick={handleButtonClick}>
-        Add task
-      </button>
-
-      <Header>
-        <h1>My tasks</h1>
-      </Header>
-      <div>
-        <ul>
-          {messages.map((messages) => {
-            return <li>{messages}</li>;
-          })}
-        </ul>
+    <div className="w-full px-8 py-16">
+      <div className="flex w-full justify-between">
+        <div>
+          <span className="text-xs font-semibold">Minhas Tarefas</span>
+          <h2 className="text-xl font-semibold text-[#00ADB5]">
+            Minhas Tarefas
+          </h2>
+        </div>
+        <div className="flex items-center gap-3">
+          <Button variant="ghost">
+            Limpar tarefas
+            <TrashIcon />
+          </Button>
+          <Button>
+            Nova tarefa
+            <AddIcon />
+          </Button>
+        </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Tasks;
+export default Tasks
