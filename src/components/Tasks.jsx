@@ -1,4 +1,5 @@
 import Button from "./Button"
+import TasksSeparator from "./TasksSeparator"
 import AddIcon from "/src/assets/icons/add.svg?react"
 import CloudSunIcon from "/src/assets/icons/cloud-sun.svg?react"
 import MoonIcon from "/src/assets/icons/moon.svg?react"
@@ -32,24 +33,15 @@ const Tasks = () => {
 
         <div className="rounded-xl bg-white p-6">
           <div className="space-y-3">
-            <div className="border-#F4F4F5 flex gap-3 border-b border-solid pb-1">
-              <SunIcon />
-              <p className="text-sm text-[#9A9C9F]">Manhã</p>
-            </div>
+            <TasksSeparator title="Manhã" icon={<SunIcon />} />
           </div>
 
           <div className="my-6 space-y-3">
-            <div className="border-#F4F4F5 flex gap-3 border-b border-solid pb-1">
-              <CloudSunIcon />
-              <p className="text-sm text-[#9A9C9F]">Tarde</p>
-            </div>
+            <TasksSeparator title="Tarde" icon={<CloudSunIcon />} />
           </div>
 
           <div className="space-y-3">
-            <div className="border-#F4F4F5 flex gap-3 border-b border-solid pb-1">
-              <MoonIcon />
-              <p className="text-sm text-[#9A9C9F]">Noite</p>
-            </div>
+            <TasksSeparator title="Noite" icon={<MoonIcon />} />
           </div>
         </div>
       </div>
