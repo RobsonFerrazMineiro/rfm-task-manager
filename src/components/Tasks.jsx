@@ -11,11 +11,17 @@ import TrashIcon from "/src/assets/icons/trash.svg?react"
 
 const Tasks = () => {
   const [tasks, setTasks] = useState(TASKS)
+
   const morningTasks = tasks.filter((task) => task.time === "morning")
   const afternoonTasks = tasks.filter((task) => task.time === "afternoon")
-  const nightTasks = tasks.filter((task) => task.time === "night")
+  const eveningTasks = tasks.filter((task) => task.time === "evening")
 
-  const handledTasksCheckboxClick = (taskId) => {
+  const handleTasksDeleteClick = (taskId) => {
+    const newTaks = tasks.filter((task) => task.id !== taskId)
+    setTasks(newTaks)
+  }
+
+  const handleTasksCheckboxClick = (taskId) => {
     const newTaks = tasks.map((task) => {
       if (task.id !== taskId) {
         return task
@@ -75,7 +81,8 @@ const Tasks = () => {
             <TaskItem
               key={task.id}
               task={task}
-              handledTasksCheckboxClick={handledTasksCheckboxClick}
+              handleCheckboxClick={handleTasksCheckboxClick}
+              handledDeleteClick={handleTasksDeleteClick}
             />
           ))}
         </div>
@@ -86,18 +93,20 @@ const Tasks = () => {
             <TaskItem
               key={task.id}
               task={task}
-              handledTasksCheckboxClick={handledTasksCheckboxClick}
+              handleCheckboxClick={handleTasksCheckboxClick}
+              handledDeleteClick={handleTasksDeleteClick}
             />
           ))}
         </div>
 
         <div className="space-y-3">
           <TasksSeparator title="Noite" icon={<MoonIcon />} />
-          {nightTasks.map((task) => (
+          {eveningTasks.map((task) => (
             <TaskItem
               key={task.id}
               task={task}
-              handledTasksCheckboxClick={handledTasksCheckboxClick}
+              handleCheckboxClick={handleTasksCheckboxClick}
+              handledDeleteClick={handleTasksDeleteClick}
             />
           ))}
         </div>

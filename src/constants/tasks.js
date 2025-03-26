@@ -35,7 +35,7 @@ const TASKS = [
     title: "Descansar",
     description:
       "Assistir a um filme ou série para relaxar e descansar a mente.",
-    time: "night",
+    time: "evening",
     status: "not_started",
   },
   {
@@ -43,7 +43,7 @@ const TASKS = [
     title: "Relaxar",
     description:
       "Ouvir uma música ou podcast para relaxar e descansar a mente.",
-    time: "night",
+    time: "evening",
     status: "not_started",
   },
 ]
