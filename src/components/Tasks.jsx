@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { toast } from "sonner"
 import TASKS from "../constants/tasks"
 import Button from "./Button"
 import TaskItem from "./TaskItem"
@@ -19,6 +20,7 @@ const Tasks = () => {
   const handleTasksDeleteClick = (taskId) => {
     const newTaks = tasks.filter((task) => task.id !== taskId)
     setTasks(newTaks)
+    toast.success("Tarefa deletada com sucesso!")
   }
 
   const handleTasksCheckboxClick = (taskId) => {
@@ -28,6 +30,7 @@ const Tasks = () => {
       }
 
       if (task.status === "done") {
+        toast.success("Tarefa reiniciada com sucesso")
         return {
           ...task,
           status: "not_started",
@@ -35,6 +38,7 @@ const Tasks = () => {
       }
 
       if (task.status === "in_progress") {
+        toast.success("Tarefa concluída com sucesso")
         return {
           ...task,
           status: "done",
@@ -42,6 +46,7 @@ const Tasks = () => {
       }
 
       if (task.status === "not_started") {
+        toast.success("Tarefa iniciada com sucesso")
         return {
           ...task,
           status: "in_progress",
