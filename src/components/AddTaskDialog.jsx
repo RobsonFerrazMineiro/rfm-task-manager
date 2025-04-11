@@ -16,6 +16,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   const nodeRef = useRef()
 
   useEffect(() => {
+    //Isso limpa os imputs quando o dilog é fechado
     if (!isOpen) {
       setTitle("")
       setTime("morning")
@@ -24,6 +25,10 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   }, [isOpen])
 
   const handleSaveClick = () => {
+    if (!title.trim() || !time.trim() || !description.trim()) {
+      // Se o título ou descrição estiverem vazios, exibe um alerta
+      return alert("Preencha todos os campos")
+    }
     handleSubmit({
       id: v4(),
       title,
