@@ -12,6 +12,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   const [title, setTitle] = useState("")
   const [time, setTime] = useState("morning")
   const [description, setDescription] = useState("")
+  const [errors, setErrors] = useState([])
 
   const nodeRef = useRef()
 
@@ -25,10 +26,37 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   }, [isOpen])
 
   const handleSaveClick = () => {
-    if (!title.trim() || !time.trim() || !description.trim()) {
-      // Se o título ou descrição estiverem vazios, exibe um alerta
-      return alert("Preencha todos os campos")
+    //Isso é para aramazenar os erros
+    const newErrors = []
+    //Isso é para validar o input de título verificando se ele está vazio e se está vazio ele exibe uma mensagem de erro!
+    if (!title.trim()) {
+      newErrors.push({
+        input: "title",
+        message: "Título é obrigatório",
+      })
     }
+    //Isso é para validar o input de horário verificando se ele está vazio e se está vazio ele exibe uma mensagem de erro!
+    if (!time.trim()) {
+      newErrors.push({
+        input: "time",
+        message: "Horário é obrigatório",
+      })
+    }
+    //Isso é para validar o input de descrição verificando se ele está vazio e se está vazio ele exibe uma mensagem de erro!
+    if (!description.trim()) {
+      newErrors.push({
+        input: "description",
+        message: "Descrição é obrigatória",
+      })
+    }
+
+    //Isso é para validar se tem erros
+    if (newErrors.length > 0) {
+      setErrors(newErrors)
+      return
+    }
+
+    //Isso é para enviar os dados para o handleSubmit
     handleSubmit({
       id: v4(),
       title,
@@ -37,10 +65,16 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
       status: "not_started",
     })
 
+    //Isso é para fechar o dialog
     handleClose()
   }
+  //Isso é para buscar as mensagens de erro e exibir elas
+  const titleError = errors.find((error) => error.input === "title")
+  const descriptionError = errors.find((error) => error.input === "description")
 
+  //Isso é para renderizar o dialog quando o isOpen for true
   return (
+    //Isso adiciona uma transição no dialog
     <CSSTransition
       nodeRef={nodeRef}
       in={isOpen}
@@ -49,6 +83,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
       unmountOnExit
     >
       <div>
+        {/* Isso é para renderizar o dialog */}
         {createPortal(
           <div
             ref={nodeRef}
@@ -69,6 +104,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                   placeholder="Título da tarefa"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
+                  errorMessage={titleError?.message}
                 />
 
                 <TimeSelect
@@ -82,6 +118,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                   placeholder="Descreva a tarefa"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                  errorMessage={descriptionError?.message}
                 />
 
                 <div className="flex gap-3">
