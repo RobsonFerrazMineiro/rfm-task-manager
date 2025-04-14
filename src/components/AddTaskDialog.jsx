@@ -22,6 +22,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
       setTitle("")
       setTime("morning")
       setDescription("")
+      setErrors([])
     }
   }, [isOpen])
 
@@ -50,9 +51,10 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
       })
     }
 
+    setErrors(newErrors)
+
     //Isso é para validar se tem erros
     if (newErrors.length > 0) {
-      setErrors(newErrors)
       return
     }
 
