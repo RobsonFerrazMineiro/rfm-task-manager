@@ -70,6 +70,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   }
   //Isso é para buscar as mensagens de erro e exibir elas
   const titleError = errors.find((error) => error.input === "title")
+  const timeError = errors.find((error) => error.input === "time")
   const descriptionError = errors.find((error) => error.input === "description")
 
   //Isso é para renderizar o dialog quando o isOpen for true
@@ -110,6 +111,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                 <TimeSelect
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
+                  errorMessage={timeError?.message}
                 />
 
                 <Input
